@@ -1,18 +1,30 @@
 const express = require('express');
+var cors = require('cors');
 
 class Server{
     constructor(){
-        this.port = process.env.PORT || 3000;
+        this.port = process.env.PORT || 5000; //puerto de html
 
         this.app = express();
+
+        this.middleware();
 
         this.routers();
     }
 
+    middleware(){
+        this.app.use(cors());
+        this.app.use(express.static('public')); 
+
+    }
+
     routers(){
-        this.app.get('/', function (req, res){
+        /*this.app.get('/', function (req, res){
             res.send('Hello world');
-        })
+        }) */
+    
+    
+        this.app.use('/api/v1/demo', require('../routes/demo'));
     }
 
     listen(){
