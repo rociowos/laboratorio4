@@ -1,2 +1,1 @@
 ##mi primer servidor 
-snsns
